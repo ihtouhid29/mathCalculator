@@ -1,0 +1,618 @@
+
+<style>
+:root{
+  --bg: linear-gradient(135deg, #f4f6f9, #eef2ff);
+  --card:#ffffffcc;
+  --text:#1f2937;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --primary:#534AB7;
+  --primary-dark:#3C3489;
+  --radius:16px;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+/* ================= HOME BUTTON ================= */
+.home-btn{
+  position:fixed;
+  top:16px;
+  left:16px;
+  z-index:9999;
+
+  background:rgba(83,74,183,0.95);
+  color:#fff;
+  padding:10px 14px;
+  border-radius:12px;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:600;
+
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+  transition:0.25s ease;
+  backdrop-filter: blur(8px);
+}
+
+.home-btn:hover{
+  transform:translateY(-2px);
+  background:var(--primary-dark);
+}
+
+/* ================= HUB ================= */
+.hub{
+  max-width:1150px;
+  margin:auto;
+  padding:3.5rem 1rem 2rem;
+}
+
+/* ================= SEARCH ================= */
+.search-bar{
+  position:relative;
+  margin-bottom:1.8rem;
+}
+
+.search-bar input{
+  width:100%;
+  padding:14px 18px 14px 44px;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  background:rgba(255,255,255,0.85);
+  font-size:15px;
+
+  outline:none;
+  transition:0.25s ease;
+
+  box-shadow:0 6px 20px rgba(0,0,0,0.05);
+  backdrop-filter: blur(6px);
+}
+
+.search-bar input:focus{
+  border-color:var(--primary);
+  box-shadow:0 0 0 4px rgba(83,74,183,0.15);
+  transform:scale(1.01);
+}
+
+.search-icon{
+  position:absolute;
+  left:14px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:16px;
+  color:var(--muted);
+}
+
+/* ================= TABS ================= */
+.tabs{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:1.8rem;
+}
+
+.tab{
+  padding:8px 14px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  font-size:13px;
+  cursor:pointer;
+  background:rgba(255,255,255,0.8);
+  color:var(--muted);
+
+  transition:0.2s ease;
+}
+
+.tab:hover{
+  transform:translateY(-2px);
+  color:var(--text);
+  border-color:#cbd5e1;
+}
+
+.tab.active{
+  background:var(--primary);
+  color:#fff;
+  border-color:var(--primary);
+  box-shadow:0 8px 20px rgba(83,74,183,0.25);
+}
+
+/* ================= GRID ================= */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
+  gap:14px;
+}
+
+/* ================= CARD ================= */
+.calc-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:16px;
+  cursor:pointer;
+
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+
+  transition:0.25s ease;
+  box-shadow:0 6px 18px rgba(0,0,0,0.06);
+  backdrop-filter: blur(6px);
+}
+
+.calc-card:hover{
+  transform:translateY(-6px) scale(1.02);
+  border-color:var(--primary);
+  box-shadow:0 14px 30px rgba(0,0,0,0.12);
+}
+
+.calc-card.active-calc{
+  border:2px solid var(--primary);
+}
+
+/* ICON */
+.card-icon{
+  font-size:22px;
+  width:40px;
+  height:40px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:12px;
+  background:rgba(83,74,183,0.1);
+}
+
+/* TITLE */
+.card-title{
+  font-size:14px;
+  font-weight:600;
+}
+
+/* CATEGORY */
+.card-cat{
+  font-size:12px;
+  color:var(--muted);
+}
+
+/* ================= PANEL ================= */
+.calc-panel{
+  background:rgba(255,255,255,0.9);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:1.5rem;
+  margin-top:1.5rem;
+
+  display:none;
+  box-shadow:0 15px 35px rgba(0,0,0,0.12);
+  backdrop-filter: blur(10px);
+}
+
+.calc-panel.open{
+  display:block;
+}
+
+.panel-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:1.2rem;
+}
+
+.panel-title{
+  font-size:16px;
+  font-weight:700;
+}
+
+/* CLOSE */
+.close-btn{
+  width:36px;
+  height:36px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:#fff;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.close-btn:hover{
+  transform:rotate(90deg);
+  background:#f3f4f6;
+}
+
+/* INPUTS */
+.input-row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:10px;
+}
+
+.input-group{
+  flex:1;
+  min-width:120px;
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+
+.input-group label{
+  font-size:12px;
+  color:var(--muted);
+}
+
+.input-group input,
+.input-group select{
+  padding:10px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  outline:none;
+  transition:0.2s;
+}
+
+.input-group input:focus,
+.input-group select:focus{
+  border-color:var(--primary);
+  box-shadow:0 0 0 3px rgba(83,74,183,0.12);
+}
+
+/* BUTTON */
+.calc-btn{
+  padding:11px 18px;
+  background:var(--primary);
+  color:#fff;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:600;
+
+  transition:0.2s ease;
+}
+
+.calc-btn:hover{
+  background:var(--primary-dark);
+  transform:translateY(-2px);
+}
+
+/* RESULT */
+.result-box{
+  margin-top:15px;
+  padding:14px;
+  background:#f8fafc;
+  border:1px solid var(--border);
+  border-radius:12px;
+  display:none;
+}
+
+.result-box.show{
+  display:block;
+}
+
+.result-val{
+  font-size:22px;
+  font-weight:800;
+  color:var(--primary);
+}
+
+/* EMPTY */
+.no-results{
+  text-align:center;
+  padding:2rem;
+  color:var(--muted);
+}
+
+
+</style>
+<a href="../index.html" class="home-btn">🏠 Home</a>
+
+<div class="hub">
+<div class="search-bar">
+  <span class="search-icon">&#9906;</span>
+  <input type="text" id="searchInput" placeholder="Search calculators..." oninput="filterCalcs()">
+</div>
+<div class="tabs" id="tabs"></div>
+<div class="grid" id="calcGrid"></div>
+<div class="calc-panel" id="calcPanel">
+  <div class="panel-header">
+    <span class="panel-title" id="panelTitle">Calculator</span>
+    <button class="close-btn" onclick="closePanel()">&#10005;</button>
+  </div>
+  <div id="panelContent"></div>
+</div>
+</div>
+
+<script>
+const CALCS = [
+  {id:'pct',title:'Percentage',cat:'Arithmetic',icon:'%',desc:'Find % of a number'},
+  {id:'pct_chg',title:'Percentage Change',cat:'Arithmetic',icon:'↑',desc:'Increase or decrease %'},
+  {id:'avg',title:'Average (Mean)',cat:'Arithmetic',icon:'x̄',desc:'Mean of a set of numbers'},
+  {id:'wavg',title:'Weighted Average',cat:'Arithmetic',icon:'⊘',desc:'Average with weights'},
+  {id:'round',title:'Rounding',cat:'Arithmetic',icon:'≈',desc:'Round to decimals or place'},
+  {id:'ratio',title:'Ratio Simplifier',cat:'Arithmetic',icon:'∶',desc:'Simplify a:b ratios'},
+  {id:'prop',title:'Proportion',cat:'Arithmetic',icon:'∝',desc:'Solve a:b = c:d'},
+  {id:'frac_dec',title:'Fraction to Decimal',cat:'Arithmetic',icon:'½',desc:'Convert fraction'},
+  {id:'dec_frac',title:'Decimal to Fraction',cat:'Arithmetic',icon:'0.x',desc:'Convert decimal'},
+  {id:'prime',title:'Prime Checker',cat:'Number Theory',icon:'★',desc:'Is it prime?'},
+  {id:'prime_fac',title:'Prime Factorization',cat:'Number Theory',icon:'⊗',desc:'Factor into primes'},
+  {id:'lcm',title:'LCM Calculator',cat:'Number Theory',icon:'L',desc:'Least common multiple'},
+  {id:'gcd',title:'GCD / HCF',cat:'Number Theory',icon:'G',desc:'Greatest common divisor'},
+  {id:'div_check',title:'Divisibility Check',cat:'Number Theory',icon:'÷',desc:'Check divisibility rules'},
+  {id:'even_odd',title:'Even / Odd Checker',cat:'Number Theory',icon:'2',desc:'Odd or even?'},
+  {id:'perfect',title:'Perfect Number',cat:'Number Theory',icon:'◉',desc:'Is it a perfect number?'},
+  {id:'palindrome',title:'Palindrome Check',cat:'Number Theory',icon:'↔',desc:'Is it a palindrome?'},
+  {id:'armstrong',title:'Armstrong Number',cat:'Number Theory',icon:'A',desc:'Narcissistic number check'},
+  {id:'fibonacci',title:'Fibonacci Check',cat:'Number Theory',icon:'φ',desc:'Is it in Fibonacci?'},
+  {id:'linear',title:'Linear Equation',cat:'Algebra',icon:'x',desc:'Solve ax + b = 0'},
+  {id:'quadratic',title:'Quadratic Equation',cat:'Algebra',icon:'x²',desc:'Solve ax²+bx+c=0'},
+  {id:'exponent',title:'Exponent',cat:'Algebra',icon:'aⁿ',desc:'Calculate base^power'},
+  {id:'log',title:'Logarithm',cat:'Algebra',icon:'log',desc:'log base b of x'},
+  {id:'triangle',title:'Triangle Area',cat:'Geometry',icon:'▲',desc:"Heron's formula"},
+  {id:'rect',title:'Rectangle',cat:'Geometry',icon:'▭',desc:'Area & perimeter'},
+  {id:'circle',title:'Circle',cat:'Geometry',icon:'○',desc:'Area & circumference'},
+  {id:'cylinder',title:'Cylinder',cat:'Geometry',icon:'⌀',desc:'Volume & surface area'},
+  {id:'sphere',title:'Sphere',cat:'Geometry',icon:'●',desc:'Volume & surface area'},
+  {id:'pyth',title:'Pythagorean Theorem',cat:'Geometry',icon:'c²',desc:'Find missing side'},
+  {id:'distance',title:'Distance (2D)',cat:'Geometry',icon:'↗',desc:'Distance between points'},
+  {id:'mean_med_mod',title:'Mean/Median/Mode',cat:'Statistics',icon:'μ',desc:'Full descriptive stats'},
+  {id:'std_dev',title:'Standard Deviation',cat:'Statistics',icon:'σ',desc:'Population & sample'},
+  {id:'prob',title:'Probability',cat:'Statistics',icon:'P',desc:'Basic event probability'},
+  {id:'ncr',title:'Combination nCr',cat:'Statistics',icon:'C',desc:'Choose r from n'},
+  {id:'npr',title:'Permutation nPr',cat:'Statistics',icon:'P!',desc:'Arrange r from n'},
+  {id:'zscore',title:'Z-Score',cat:'Statistics',icon:'Z',desc:'Standard score'},
+  {id:'tip',title:'Tip Calculator',cat:'Everyday',icon:'$',desc:'Restaurant tip & split'},
+  {id:'discount',title:'Discount',cat:'Everyday',icon:'🏷',desc:'Sale price after %off'},
+  {id:'profit',title:'Profit / Loss',cat:'Everyday',icon:'↕',desc:'P&L and margin %'},
+  {id:'markup',title:'Markup',cat:'Everyday',icon:'+%',desc:'Cost + markup = price'},
+  {id:'bill_split',title:'Bill Split',cat:'Everyday',icon:'÷$',desc:'Split bill equally'},
+  {id:'simple_int',title:'Simple Interest',cat:'Everyday',icon:'∫',desc:'I = PRT / 100'},
+  {id:'compound',title:'Compound Growth',cat:'Everyday',icon:'↗$',desc:'Compound interest'},
+  {id:'base_conv',title:'Base Converter',cat:'Fun & Logic',icon:'01',desc:'Bin/Oct/Dec/Hex'},
+  {id:'random',title:'Random Number',cat:'Fun & Logic',icon:'?',desc:'Generate random num'},
+  {id:'dice',title:'Dice Roller',cat:'Fun & Logic',icon:'⚄',desc:'Roll 1–6 dice'},
+  {id:'coin',title:'Coin Flip',cat:'Fun & Logic',icon:'◔',desc:'Heads or tails'},
+  {id:'numerology',title:'Numerology',cat:'Fun & Logic',icon:'✦',desc:'Name life path number'},
+];
+
+const ALL_CATS = ['All',...[...new Set(CALCS.map(c=>c.cat))]];
+let activeTab = 'All';
+let activeCalcId = null;
+
+function renderTabs(){
+  document.getElementById('tabs').innerHTML = ALL_CATS.map(c=>
+    `<button class="tab${c===activeTab?' active':''}" onclick="setTab('${c}')">${c}</button>`
+  ).join('');
+}
+
+function setTab(cat){activeTab=cat;renderTabs();renderGrid();}
+
+function filterCalcs(){renderGrid();}
+
+function renderGrid(){
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  const filtered = CALCS.filter(c=>{
+    const matchCat = activeTab==='All'||c.cat===activeTab;
+    const matchQ = !q||c.title.toLowerCase().includes(q)||c.cat.toLowerCase().includes(q)||c.desc.toLowerCase().includes(q);
+    return matchCat&&matchQ;
+  });
+  const grid = document.getElementById('calcGrid');
+  if(!filtered.length){grid.innerHTML='<div class="no-results" style="grid-column:1/-1">No calculators found.</div>';return;}
+  grid.innerHTML = filtered.map(c=>`
+    <div class="calc-card${activeCalcId===c.id?' active-calc':''}" onclick="openCalc('${c.id}')">
+      <div class="card-icon">${c.icon}</div>
+      <div class="card-title">${c.title}</div>
+      <div class="card-cat">${c.cat}</div>
+    </div>
+  `).join('');
+}
+
+function closePanel(){
+  activeCalcId=null;
+  document.getElementById('calcPanel').classList.remove('open');
+  renderGrid();
+}
+
+function showResult(label,val,detail=''){
+  const box = document.getElementById('resultBox');
+  box.classList.add('show');
+  document.getElementById('rLabel').textContent=label;
+  document.getElementById('rVal').textContent=val;
+  document.getElementById('rDetail').innerHTML=detail;
+}
+
+function openCalc(id){
+  activeCalcId=id;
+  const calc = CALCS.find(c=>c.id===id);
+  document.getElementById('panelTitle').textContent = calc.title+' Calculator';
+  document.getElementById('panelContent').innerHTML = buildUI(id);
+  document.getElementById('calcPanel').classList.add('open');
+  document.getElementById('calcPanel').scrollIntoView({behavior:'smooth',block:'nearest'});
+  renderGrid();
+}
+
+function inp(id,label,placeholder='',type='number'){
+  return `<div class="input-group"><label>${label}</label><input type="${type}" id="${id}" placeholder="${placeholder}"></div>`;
+}
+
+function resultHTML(){
+  return `<div class="result-box" id="resultBox"><div class="result-label" id="rLabel"></div><div class="result-val" id="rVal"></div><div class="result-detail" id="rDetail"></div></div>`;
+}
+
+function buildUI(id){
+  const defs = {
+    pct:`<div class="input-row">${inp('pctVal','Percentage (%)','25')}${inp('pctOf','Of Number','200')}</div><button class="calc-btn" onclick="calcPct()">Calculate</button>${resultHTML()}`,
+    pct_chg:`<div class="input-row">${inp('origVal','Original Value','100')}${inp('newVal','New Value','135')}</div><button class="calc-btn" onclick="calcPctChg()">Calculate</button>${resultHTML()}`,
+    avg:`<div class="input-row"><div class="input-group" style="width:100%"><label>Numbers (comma separated)</label><input type="text" id="avgNums" placeholder="4, 8, 15, 16, 23, 42"></div></div><button class="calc-btn" onclick="calcAvg()">Calculate</button>${resultHTML()}`,
+    wavg:`<div class="input-row"><div class="input-group" style="width:100%"><label>Values (comma separated)</label><input type="text" id="wvVals" placeholder="80, 90, 70"></div></div><div class="input-row"><div class="input-group" style="width:100%"><label>Weights (comma separated)</label><input type="text" id="wvWts" placeholder="3, 2, 1"></div></div><button class="calc-btn" onclick="calcWAvg()">Calculate</button>${resultHTML()}`,
+    round:`<div class="input-row">${inp('roundNum','Number','3.14159')}<div class="input-group"><label>Decimal places</label><select id="roundDp"><option>0</option><option selected>2</option><option>3</option><option>4</option><option>5</option></select></div></div><button class="calc-btn" onclick="calcRound()">Calculate</button>${resultHTML()}`,
+    ratio:`<div class="input-row">${inp('ratioA','a','12')}${inp('ratioB','b','8')}</div><button class="calc-btn" onclick="calcRatio()">Calculate</button>${resultHTML()}`,
+    prop:`<div class="input-row">${inp('prA','a','3')}${inp('prB','b','4')}${inp('prC','c','9')}<div class="input-group"><label>d = ?</label><input type="text" value="?" disabled style="background:var(--color-background-secondary)"></div></div><button class="calc-btn" onclick="calcProp()">Solve for d</button>${resultHTML()}`,
+    frac_dec:`<div class="input-row">${inp('fracN','Numerator','3')}${inp('fracD','Denominator','8')}</div><button class="calc-btn" onclick="calcFracDec()">Convert</button>${resultHTML()}`,
+    dec_frac:`<div class="input-row">${inp('decVal','Decimal','0.375')}</div><button class="calc-btn" onclick="calcDecFrac()">Convert</button>${resultHTML()}`,
+    prime:`<div class="input-row">${inp('primeNum','Number','97')}</div><button class="calc-btn" onclick="calcPrime()">Check</button>${resultHTML()}`,
+    prime_fac:`<div class="input-row">${inp('pfNum','Number','360')}</div><button class="calc-btn" onclick="calcPrimeFac()">Factorize</button>${resultHTML()}`,
+    lcm:`<div class="input-row"><div class="input-group" style="width:100%"><label>Numbers (comma separated)</label><input type="text" id="lcmNums" placeholder="12, 18, 24"></div></div><button class="calc-btn" onclick="calcLCM()">Calculate</button>${resultHTML()}`,
+    gcd:`<div class="input-row"><div class="input-group" style="width:100%"><label>Numbers (comma separated)</label><input type="text" id="gcdNums" placeholder="48, 18"></div></div><button class="calc-btn" onclick="calcGCD()">Calculate</button>${resultHTML()}`,
+    div_check:`<div class="input-row">${inp('divNum','Number','252')}${inp('divBy','Divide by','7')}</div><button class="calc-btn" onclick="calcDiv()">Check</button>${resultHTML()}`,
+    even_odd:`<div class="input-row">${inp('eoNum','Number','42')}</div><button class="calc-btn" onclick="calcEO()">Check</button>${resultHTML()}`,
+    perfect:`<div class="input-row">${inp('perfNum','Number','28')}</div><button class="calc-btn" onclick="calcPerf()">Check</button>${resultHTML()}`,
+    palindrome:`<div class="input-row">${inp('palNum','Number','12321')}</div><button class="calc-btn" onclick="calcPal()">Check</button>${resultHTML()}`,
+    armstrong:`<div class="input-row">${inp('armNum','Number','153')}</div><button class="calc-btn" onclick="calcArm()">Check</button>${resultHTML()}`,
+    fibonacci:`<div class="input-row">${inp('fibNum','Number','21')}</div><button class="calc-btn" onclick="calcFib()">Check</button>${resultHTML()}`,
+    linear:`<div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:10px">Solve: ax + b = 0</div><div class="input-row">${inp('linA','a (coefficient)','3')}${inp('linB','b (constant)','12')}</div><button class="calc-btn" onclick="calcLinear()">Solve</button>${resultHTML()}`,
+    quadratic:`<div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:10px">Solve: ax² + bx + c = 0</div><div class="input-row">${inp('qa','a','1')}${inp('qb','b','-5')}${inp('qc','c','6')}</div><button class="calc-btn" onclick="calcQuad()">Solve</button>${resultHTML()}`,
+    exponent:`<div class="input-row">${inp('expBase','Base','2')}${inp('expPow','Power','10')}</div><button class="calc-btn" onclick="calcExp()">Calculate</button>${resultHTML()}`,
+    log:`<div class="input-row">${inp('logX','x (value)','100')}${inp('logB','Base (leave blank for ln)','10')}</div><button class="calc-btn" onclick="calcLog()">Calculate</button>${resultHTML()}`,
+    triangle:`<div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:10px">Enter the three side lengths</div><div class="input-row">${inp('triA','Side a','5')}${inp('triB','Side b','6')}${inp('triC','Side c','7')}</div><button class="calc-btn" onclick="calcTriangle()">Calculate</button>${resultHTML()}`,
+    rect:`<div class="input-row">${inp('rectL','Length','10')}${inp('rectW','Width','5')}</div><button class="calc-btn" onclick="calcRect()">Calculate</button>${resultHTML()}`,
+    circle:`<div class="input-row">${inp('circR','Radius','7')}</div><button class="calc-btn" onclick="calcCircle()">Calculate</button>${resultHTML()}`,
+    cylinder:`<div class="input-row">${inp('cylR','Radius','5')}${inp('cylH','Height','10')}</div><button class="calc-btn" onclick="calcCyl()">Calculate</button>${resultHTML()}`,
+    sphere:`<div class="input-row">${inp('sphR','Radius','6')}</div><button class="calc-btn" onclick="calcSph()">Calculate</button>${resultHTML()}`,
+    pyth:`<div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:10px">Enter two sides; leave the unknown blank</div><div class="input-row">${inp('pythA','Side a','')}${inp('pythB','Side b','')}${inp('pythC','Hypotenuse c','')}</div><button class="calc-btn" onclick="calcPyth()">Calculate</button>${resultHTML()}`,
+    distance:`<div class="input-row">${inp('d_x1','x₁','1')}${inp('d_y1','y₁','2')}</div><div class="input-row">${inp('d_x2','x₂','4')}${inp('d_y2','y₂','6')}</div><button class="calc-btn" onclick="calcDist()">Calculate</button>${resultHTML()}`,
+    mean_med_mod:`<div class="input-row"><div class="input-group" style="width:100%"><label>Numbers (comma separated)</label><input type="text" id="statsNums" placeholder="4, 8, 6, 5, 3, 2, 8, 9, 2, 5"></div></div><button class="calc-btn" onclick="calcStats()">Calculate</button>${resultHTML()}`,
+    std_dev:`<div class="input-row"><div class="input-group" style="width:100%"><label>Numbers (comma separated)</label><input type="text" id="sdNums" placeholder="2, 4, 4, 4, 5, 5, 7, 9"></div></div><button class="calc-btn" onclick="calcSD()">Calculate</button>${resultHTML()}`,
+    prob:`<div class="input-row">${inp('probFav','Favorable outcomes','3')}${inp('probTotal','Total outcomes','6')}</div><button class="calc-btn" onclick="calcProb()">Calculate</button>${resultHTML()}`,
+    ncr:`<div class="input-row">${inp('ncrN','n','10')}${inp('ncrR','r','3')}</div><button class="calc-btn" onclick="calcNCR()">Calculate</button>${resultHTML()}`,
+    npr:`<div class="input-row">${inp('nprN','n','10')}${inp('nprR','r','3')}</div><button class="calc-btn" onclick="calcNPR()">Calculate</button>${resultHTML()}`,
+    zscore:`<div class="input-row">${inp('zsX','Value (x)','72')}${inp('zsMu','Mean (μ)','65')}${inp('zsSig','Std Dev (σ)','8')}</div><button class="calc-btn" onclick="calcZ()">Calculate</button>${resultHTML()}`,
+    tip:`<div class="input-row">${inp('tipBill','Bill Amount','120')}${inp('tipPct','Tip %','18')}${inp('tipPpl','People','4')}</div><button class="calc-btn" onclick="calcTip()">Calculate</button>${resultHTML()}`,
+    discount:`<div class="input-row">${inp('discPrice','Original Price','250')}${inp('discPct','Discount %','30')}</div><button class="calc-btn" onclick="calcDisc()">Calculate</button>${resultHTML()}`,
+    profit:`<div class="input-row">${inp('profCost','Cost Price','80')}${inp('profSell','Selling Price','120')}</div><button class="calc-btn" onclick="calcProfit()">Calculate</button>${resultHTML()}`,
+    markup:`<div class="input-row">${inp('mkCost','Cost','50')}${inp('mkPct','Markup %','40')}</div><button class="calc-btn" onclick="calcMarkup()">Calculate</button>${resultHTML()}`,
+    bill_split:`<div class="input-row">${inp('bsBill','Total Bill','300')}${inp('bsPpl','Number of People','5')}${inp('bsTip','Tip %','15')}</div><button class="calc-btn" onclick="calcBS()">Calculate</button>${resultHTML()}`,
+    simple_int:`<div class="input-row">${inp('siP','Principal','10000')}${inp('siR','Rate % per year','5')}${inp('siT','Time (years)','3')}</div><button class="calc-btn" onclick="calcSI()">Calculate</button>${resultHTML()}`,
+    compound:`<div class="input-row">${inp('cpP','Principal','10000')}${inp('cpR','Annual Rate %','8')}${inp('cpT','Years','10')}<div class="input-group"><label>Compound</label><select id="cpN"><option value="1">Yearly</option><option value="4">Quarterly</option><option value="12" selected>Monthly</option><option value="365">Daily</option></select></div></div><button class="calc-btn" onclick="calcCP()">Calculate</button>${resultHTML()}`,
+    base_conv:`<div class="input-row">${inp('bcVal','Value','255','text')}<div class="input-group"><label>From base</label><select id="bcFrom"><option value="10" selected>Decimal</option><option value="2">Binary</option><option value="8">Octal</option><option value="16">Hex</option></select></div></div><button class="calc-btn" onclick="calcBC()">Convert all bases</button>${resultHTML()}`,
+    random:`<div class="input-row">${inp('rnMin','Min','1')}${inp('rnMax','Max','100')}</div><button class="calc-btn" onclick="calcRand()">Generate</button>${resultHTML()}`,
+    dice:`<div class="input-row"><div class="input-group"><label>Number of dice</label><select id="diceN"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div><div class="input-group"><label>Sides per die</label><select id="diceS"><option value="4">d4</option><option value="6" selected>d6</option><option value="8">d8</option><option value="10">d10</option><option value="12">d12</option><option value="20">d20</option></select></div></div><button class="calc-btn" onclick="calcDice()">Roll Dice</button>${resultHTML()}`,
+    coin:`<div style="text-align:center;padding:1rem 0"><button class="calc-btn" style="font-size:16px;padding:12px 32px" onclick="calcCoin()">Flip Coin</button></div>${resultHTML()}`,
+    numerology:`<div class="input-row"><div class="input-group" style="width:100%"><label>Full Name</label><input type="text" id="numName" placeholder="Enter your full name"></div></div><button class="calc-btn" onclick="calcNum()">Calculate</button>${resultHTML()}`,
+  };
+  return defs[id]||'<p style="color:var(--color-text-secondary)">Coming soon...</p>';
+}
+
+function gv(id){return document.getElementById(id)?.value;}
+function nums(id){return gv(id).split(',').map(s=>parseFloat(s.trim())).filter(n=>!isNaN(n));}
+function gcd2(a,b){return b===0?a:gcd2(b,a%b);}
+function factorial(n){if(n<=1)return 1;let r=1;for(let i=2;i<=n;i++)r*=i;return r;}
+function isPrime(n){if(n<2)return false;for(let i=2;i<=Math.sqrt(n);i++)if(n%i===0)return false;return true;}
+function isFib(n){const p=v=>Math.round(Math.sqrt(v));return p(5*n*n+4)===Math.round(Math.sqrt(5*n*n+4))||p(5*n*n-4)===Math.round(Math.sqrt(5*n*n-4));}
+
+function calcPct(){const v=parseFloat(gv('pctVal')),o=parseFloat(gv('pctOf'));showResult('Result',((v/100)*o).toFixed(4),`${v}% of ${o} = ${((v/100)*o).toFixed(4)}`);}
+function calcPctChg(){const o=parseFloat(gv('origVal')),n=parseFloat(gv('newVal'));const c=((n-o)/o*100);showResult((c>=0?'Increase':'Decrease'),Math.abs(c).toFixed(2)+'%',`From ${o} to ${n}: ${c>=0?'+':''}${c.toFixed(2)}%`);}
+function calcAvg(){const ns=nums('avgNums');const m=ns.reduce((a,b)=>a+b,0)/ns.length;showResult('Average (Mean)',m.toFixed(4),`Sum: ${ns.reduce((a,b)=>a+b,0)} ÷ Count: ${ns.length}`);}
+function calcWAvg(){const vs=nums('wvVals'),ws=nums('wvWts');const num=vs.reduce((a,v,i)=>a+v*(ws[i]||0),0),den=ws.reduce((a,b)=>a+b,0);showResult('Weighted Average',(num/den).toFixed(4),`Σ(v×w)/Σw = ${num.toFixed(2)}/${den.toFixed(2)}`);}
+function calcRound(){const n=parseFloat(gv('roundNum')),dp=parseInt(gv('roundDp'));showResult('Rounded',n.toFixed(dp),`${n} rounded to ${dp} decimal place${dp!==1?'s':''}`);}
+function calcRatio(){const a=parseInt(gv('ratioA')),b=parseInt(gv('ratioB'));const g=gcd2(a,b);showResult('Simplified Ratio',`${a/g} : ${b/g}`,`GCD: ${g} — divided both by ${g}`);}
+function calcProp(){const a=parseFloat(gv('prA')),b=parseFloat(gv('prB')),c=parseFloat(gv('prC'));const d=(b*c)/a;showResult('d =',d.toFixed(4),`${a}:${b} = ${c}:${d.toFixed(4)}`);}
+function calcFracDec(){const n=parseFloat(gv('fracN')),d=parseFloat(gv('fracD'));showResult('Decimal',(n/d).toFixed(8).replace(/0+$/,''),`${n}/${d} = ${n/d}`);}
+function calcDecFrac(){
+  const d=parseFloat(gv('decVal'));const prec=1e9;let n=Math.round(d*prec),den=prec;const g=gcd2(Math.abs(n),den);
+  showResult('Fraction',`${n/g} / ${den/g}`,`${d} ≈ ${n/g}/${den/g}`);
+}
+function calcPrime(){const n=parseInt(gv('primeNum'));const p=isPrime(n);showResult(p?'✓ Prime':'✗ Not Prime',n,p?`${n} has no divisors other than 1 and itself`:`${n} is composite`);}
+function calcPrimeFac(){
+  let n=parseInt(gv('pfNum'));const orig=n;const factors=[];
+  for(let i=2;i*i<=n;i++){while(n%i===0){factors.push(i);n/=i;}}
+  if(n>1)factors.push(n);
+  const groups={};factors.forEach(f=>{groups[f]=(groups[f]||0)+1;});
+  const exp=Object.entries(groups).map(([f,e])=>e>1?`${f}^${e}`:f).join(' × ');
+  showResult('Factorization',exp,`${orig} = ${exp}`);
+}
+function calcLCM(){
+  const ns=nums('lcmNums').map(Math.abs).map(Math.round);
+  const lcm2=(a,b)=>a/gcd2(a,b)*b;
+  const result=ns.reduce(lcm2);
+  showResult('LCM',result,`LCM(${ns.join(', ')}) = ${result}`);
+}
+function calcGCD(){const ns=nums('gcdNums').map(Math.abs).map(Math.round);const g=ns.reduce(gcd2);showResult('GCD / HCF',g,`GCD(${ns.join(', ')}) = ${g}`);}
+function calcDiv(){const n=parseInt(gv('divNum')),d=parseInt(gv('divBy'));const yes=n%d===0;showResult(yes?'✓ Divisible':'✗ Not Divisible',`${n} ÷ ${d}`,yes?`Remainder: 0`:`Remainder: ${n%d}`);}
+function calcEO(){const n=parseInt(gv('eoNum'));showResult(n%2===0?'Even':'Odd',n,`${n} is ${n%2===0?'even (divisible by 2)':'odd (not divisible by 2)'}`);}
+function calcPerf(){const n=parseInt(gv('perfNum'));const divs=[];for(let i=1;i<n;i++)if(n%i===0)divs.push(i);const s=divs.reduce((a,b)=>a+b,0);showResult(s===n?'✓ Perfect Number':'✗ Not Perfect',n,`Sum of divisors: ${divs.join('+')}=${s}`);}
+function calcPal(){const n=gv('palNum');const p=n===n.split('').reverse().join('');showResult(p?'✓ Palindrome':'✗ Not Palindrome',n,p?`${n} reads the same forwards and backwards`:`${n} reversed = ${n.split('').reverse().join('')}`);}
+function calcArm(){const n=gv('armNum');const d=n.length;const s=[...n].reduce((a,c)=>a+Math.pow(parseInt(c),d),0);const p=s===parseInt(n);showResult(p?'✓ Armstrong Number':'✗ Not Armstrong',n,`${[...n].map(c=>`${c}^${d}`).join(' + ')} = ${s}`);}
+function calcFib(){const n=parseInt(gv('fibNum'));const p=isFib(n);showResult(p?'✓ In Fibonacci':'✗ Not Fibonacci',n,p?`${n} appears in the Fibonacci sequence`:`${n} is not a Fibonacci number`);}
+function calcLinear(){const a=parseFloat(gv('linA')),b=parseFloat(gv('linB'));const x=-b/a;showResult('x =',x.toFixed(6),`${a}x + ${b} = 0 → x = ${(-b).toFixed(4)} / ${a.toFixed(4)} = ${x.toFixed(6)}`);}
+function calcQuad(){
+  const a=parseFloat(gv('qa')),b=parseFloat(gv('qb')),c=parseFloat(gv('qc'));
+  const disc=b*b-4*a*c;
+  if(disc<0){showResult('No real solutions','Δ < 0',`Discriminant = ${disc.toFixed(4)} — complex roots`);return;}
+  const x1=(-b+Math.sqrt(disc))/(2*a),x2=(-b-Math.sqrt(disc))/(2*a);
+  showResult('Roots',disc===0?`x = ${x1.toFixed(6)}`:`x₁ = ${x1.toFixed(4)}, x₂ = ${x2.toFixed(4)}`,`Discriminant Δ = ${disc.toFixed(4)}`);
+}
+function calcExp(){const b=parseFloat(gv('expBase')),p=parseFloat(gv('expPow'));showResult('Result',Math.pow(b,p).toLocaleString(),`${b}^${p} = ${Math.pow(b,p)}`);}
+function calcLog(){const x=parseFloat(gv('logX')),b=gv('logB');const r=b?Math.log(x)/Math.log(parseFloat(b)):Math.log(x);showResult('Result',r.toFixed(8),b?`log₍${b}₎(${x}) = ${r.toFixed(8)}`:`ln(${x}) = ${r.toFixed(8)}`);}
+function calcTriangle(){
+  const a=parseFloat(gv('triA')),b=parseFloat(gv('triB')),c=parseFloat(gv('triC'));
+  const s=(a+b+c)/2,area=Math.sqrt(s*(s-a)*(s-b)*(s-c));
+  showResult('Area',area.toFixed(4),`Semi-perimeter s = ${s.toFixed(4)}<br>Perimeter = ${(a+b+c).toFixed(4)}`);
+}
+function calcRect(){const l=parseFloat(gv('rectL')),w=parseFloat(gv('rectW'));showResult('Area',(l*w).toFixed(4),`Perimeter = 2×(${l}+${w}) = ${2*(l+w).toFixed(4)}`);}
+function calcCircle(){const r=parseFloat(gv('circR'));showResult('Area',(Math.PI*r*r).toFixed(4),`Circumference = 2π×${r} = ${(2*Math.PI*r).toFixed(4)}<br>π = 3.14159...`);}
+function calcCyl(){const r=parseFloat(gv('cylR')),h=parseFloat(gv('cylH'));const v=Math.PI*r*r*h,sa=2*Math.PI*r*(r+h);showResult('Volume',v.toFixed(4),`Surface area = ${sa.toFixed(4)}`);}
+function calcSph(){const r=parseFloat(gv('sphR'));const v=(4/3)*Math.PI*r*r*r,sa=4*Math.PI*r*r;showResult('Volume',v.toFixed(4),`Surface area = ${sa.toFixed(4)}`);}
+function calcPyth(){
+  const a=parseFloat(gv('pythA')),b=parseFloat(gv('pythB')),c=parseFloat(gv('pythC'));
+  if(isNaN(c)){showResult('Hypotenuse c',Math.sqrt(a*a+b*b).toFixed(4),`c = √(${a}²+${b}²) = √${a*a+b*b}`);}
+  else if(isNaN(a)){showResult('Side a',Math.sqrt(c*c-b*b).toFixed(4),`a = √(${c}²-${b}²)`);}
+  else{showResult('Side b',Math.sqrt(c*c-a*a).toFixed(4),`b = √(${c}²-${a}²)`);}
+}
+function calcDist(){const x1=parseFloat(gv('d_x1')),y1=parseFloat(gv('d_y1')),x2=parseFloat(gv('d_x2')),y2=parseFloat(gv('d_y2'));const d=Math.sqrt((x2-x1)**2+(y2-y1)**2);showResult('Distance',d.toFixed(4),`√((${x2}-${x1})²+(${y2}-${y1})²) = ${d.toFixed(4)}`);}
+function calcStats(){
+  const ns=[...nums('statsNums')].sort((a,b)=>a-b);
+  const mean=ns.reduce((a,b)=>a+b,0)/ns.length;
+  const mid=Math.floor(ns.length/2);
+  const median=ns.length%2===0?(ns[mid-1]+ns[mid])/2:ns[mid];
+  const freq={};ns.forEach(n=>{freq[n]=(freq[n]||0)+1;});const maxF=Math.max(...Object.values(freq));const mode=Object.entries(freq).filter(([,v])=>v===maxF).map(([k])=>k);
+  showResult('Mean',mean.toFixed(4),`Median: ${median}<br>Mode: ${mode.join(', ')}<br>Range: ${ns[ns.length-1]-ns[0]}<br>Count: ${ns.length}`);
+}
+function calcSD(){
+  const ns=nums('sdNums');const mean=ns.reduce((a,b)=>a+b,0)/ns.length;
+  const variance=ns.reduce((a,b)=>a+Math.pow(b-mean,2),0)/ns.length;
+  const sd=Math.sqrt(variance);
+  showResult('Std Dev (σ)',sd.toFixed(6),`Mean: ${mean.toFixed(4)}<br>Variance: ${variance.toFixed(6)}<br>Sample SD (s): ${Math.sqrt(ns.reduce((a,b)=>a+Math.pow(b-mean,2),0)/(ns.length-1)).toFixed(6)}`);
+}
+function calcProb(){const f=parseFloat(gv('probFav')),t=parseFloat(gv('probTotal'));const p=f/t;showResult('Probability',(p).toFixed(6),`${f}/${t} = ${(p*100).toFixed(2)}% chance`);}
+function calcNCR(){const n=parseInt(gv('ncrN')),r=parseInt(gv('ncrR'));const v=factorial(n)/(factorial(r)*factorial(n-r));showResult('C(n,r)',v.toLocaleString(),`${n}! / (${r}! × ${n-r}!) = ${v.toLocaleString()}`);}
+function calcNPR(){const n=parseInt(gv('nprN')),r=parseInt(gv('nprR'));const v=factorial(n)/factorial(n-r);showResult('P(n,r)',v.toLocaleString(),`${n}! / ${n-r}! = ${v.toLocaleString()}`);}
+function calcZ(){const x=parseFloat(gv('zsX')),mu=parseFloat(gv('zsMu')),sig=parseFloat(gv('zsSig'));const z=(x-mu)/sig;showResult('Z-Score',z.toFixed(4),`(${x} - ${mu}) / ${sig} = ${z.toFixed(4)}<br>${Math.abs(z).toFixed(2)} standard deviations ${z>=0?'above':'below'} mean`);}
+function calcTip(){const b=parseFloat(gv('tipBill')),p=parseFloat(gv('tipPct')),ppl=parseFloat(gv('tipPpl'));const tip=b*p/100,total=b+tip;showResult('Tip Amount',tip.toFixed(2),`Total: ${total.toFixed(2)}<br>Per person: ${(total/ppl).toFixed(2)}`);}
+function calcDisc(){const p=parseFloat(gv('discPrice')),d=parseFloat(gv('discPct'));const saved=p*d/100;showResult('Sale Price',(p-saved).toFixed(2),`You save: ${saved.toFixed(2)} (${d}% off)`);}
+function calcProfit(){const c=parseFloat(gv('profCost')),s=parseFloat(gv('profSell'));const pl=s-c,pct=(pl/c*100);showResult(pl>=0?'Profit':'Loss',Math.abs(pl).toFixed(2),`${pl>=0?'Profit':'Loss'}: ${Math.abs(pct).toFixed(2)}%<br>Cost: ${c}, Selling: ${s}`);}
+function calcMarkup(){const c=parseFloat(gv('mkCost')),m=parseFloat(gv('mkPct'));const price=c*(1+m/100);showResult('Selling Price',price.toFixed(2),`Cost ${c} + ${m}% markup = ${price.toFixed(2)}`);}
+function calcBS(){const b=parseFloat(gv('bsBill')),p=parseFloat(gv('bsPpl')),t=parseFloat(gv('bsTip'));const total=b*(1+t/100);showResult('Each Person Pays',(total/p).toFixed(2),`Bill: ${b} + ${t}% tip = ${total.toFixed(2)}<br>Split ${p} ways: ${(total/p).toFixed(2)}`);}
+function calcSI(){const p=parseFloat(gv('siP')),r=parseFloat(gv('siR')),t=parseFloat(gv('siT'));const i=p*r*t/100;showResult('Interest',i.toFixed(2),`I = ${p}×${r}%×${t} = ${i.toFixed(2)}<br>Total Amount: ${(p+i).toFixed(2)}`);}
+function calcCP(){const p=parseFloat(gv('cpP')),r=parseFloat(gv('cpR')),t=parseFloat(gv('cpT')),n=parseInt(gv('cpN'));const a=p*Math.pow(1+(r/100/n),n*t);showResult('Final Amount',a.toFixed(2),`Interest earned: ${(a-p).toFixed(2)}<br>Growth: ${((a/p-1)*100).toFixed(2)}%`);}
+function calcBC(){
+  const v=gv('bcVal').trim(),f=parseInt(gv('bcFrom'));
+  const dec=parseInt(v,f);
+  showResult('Conversions',`Dec: ${dec}`,`Binary: ${dec.toString(2)}<br>Octal: ${dec.toString(8)}<br>Decimal: ${dec}<br>Hex: ${dec.toString(16).toUpperCase()}`);
+}
+function calcRand(){const mn=parseInt(gv('rnMin')),mx=parseInt(gv('rnMax'));const r=Math.floor(Math.random()*(mx-mn+1))+mn;showResult('Random Number',r,`Between ${mn} and ${mx}`);}
+function calcDice(){
+  const n=parseInt(document.getElementById('diceN').value),s=parseInt(document.getElementById('diceS').value);
+  const rolls=Array.from({length:n},()=>Math.floor(Math.random()*s)+1);
+  const total=rolls.reduce((a,b)=>a+b,0);
+  showResult('Total',total,`Rolls: [${rolls.join(', ')}]<br>${n}d${s}`);
+}
+function calcCoin(){const h=Math.random()<0.5;showResult(h?'Heads':'Tails',h?'🪙 H':'🪙 T',`Probability: 50/50`);}
+function calcNum(){
+  const name=gv('numName').toUpperCase().replace(/[^A-Z]/g,'');
+  const map={A:1,B:2,C:3,D:4,E:5,F:6,G:7,H:8,I:9,J:1,K:2,L:3,M:4,N:5,O:6,P:7,Q:8,R:9,S:1,T:2,U:3,V:4,W:5,X:6,Y:7,Z:8};
+  let s=[...name].reduce((a,c)=>a+(map[c]||0),0);
+  while(s>9&&s!==11&&s!==22){s=[...String(s)].reduce((a,c)=>a+parseInt(c),0);}
+  showResult('Life Path Number',s,`Name: ${gv('numName')}<br>Sum: ${[...name].map(c=>map[c]||0).join('+')} = ${s}`);
+}
+
+renderTabs();
+renderGrid();
+</script>
