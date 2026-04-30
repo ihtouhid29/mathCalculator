@@ -36,9 +36,6 @@ No installation needed. Just open the file in any browser.
 ```bash
 # Clone the repository
 git clone https://github.com/ihtouhid/mathCalculator-hub.git
-
-# Open in browser
-open math.html
 ```
 
 Or simply download `math.html` and double-click it.
